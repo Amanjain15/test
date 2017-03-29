@@ -15,9 +15,9 @@ import java.util.List;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    private List<Fragment> fragmentList = new ArrayList<>();
     private List<String> fragmentTitleList = new ArrayList<>();
     private int i;
+    private String query;
     public ViewPagerAdapter(FragmentManager manager) {
         super(manager);
     }
@@ -25,17 +25,17 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         i=position;
-        return fragmentList.get(position);
+        return new ProductsListFragment().newInstance(position,query);
     }
 
     @Override
     public int getCount() {
-        return fragmentList.size();
+        return fragmentTitleList.size();
     }
 
-    public void setTabData(List<Fragment> fragmentList, List<String> fragmentTitleList)
+    public void setTabData(String query,List<String> fragmentTitleList)
     {
-        this.fragmentList = fragmentList;
+        this.query=query;
         this.fragmentTitleList = fragmentTitleList;
     }
 
@@ -56,5 +56,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object) {
         super.destroyItem(container, position, object);
     }
+
 
 }

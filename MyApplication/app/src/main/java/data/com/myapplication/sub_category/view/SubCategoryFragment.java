@@ -4,14 +4,9 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -32,12 +27,9 @@ import java.util.List;
 import data.com.myapplication.Home.Home;
 import data.com.myapplication.R;
 import data.com.myapplication.SharedPrefs;
-import data.com.myapplication.sub_category.model.MockProductListProvider;
-import data.com.myapplication.sub_category.model.MockSubcategoryProvider;
 import data.com.myapplication.sub_category.model.RetrofitSubCategoryDetailsProvider;
 import data.com.myapplication.sub_category.model.data.SubCategoryData;
 import data.com.myapplication.sub_category.model.data.SubCategoryDetails;
-import data.com.myapplication.sub_category.presenter.ProductListPresenterImplementation;
 import data.com.myapplication.sub_category.presenter.ProductsListPresenter;
 import data.com.myapplication.sub_category.presenter.SubCategoryPresenter;
 import data.com.myapplication.sub_category.presenter.SubCategoryPresenterImpl;
@@ -75,6 +67,7 @@ public class SubCategoryFragment extends Fragment implements SubCategoryView{
     private SubCategoryPresenter subCategoryPresenter;
     private List<String> list = new ArrayList<>();
     private SubCategoryData subCategoryDataLocal;
+    List<String> titleList = new ArrayList<>();
 
 
     public SubCategoryFragment() {
@@ -131,8 +124,8 @@ public class SubCategoryFragment extends Fragment implements SubCategoryView{
 
             ((Home) getContext()).getSupportActionBar().hide();
         }
-//        subCategoryPresenter = new SubCategoryPresenterImpl(this, new RetrofitSubCategoryDetailsProvider());
-        subCategoryPresenter = new SubCategoryPresenterImpl(this, new MockSubcategoryProvider());
+        subCategoryPresenter = new SubCategoryPresenterImpl(this, new RetrofitSubCategoryDetailsProvider());
+//        subCategoryPresenter = new SubCategoryPresenterImpl(this, new MockSubcategoryProvider());
         //        productsListPresenter = new ProductListPresenterImplementation(this, new RetrofitProductListDetailsProvider());
 
         Log.d("Sub","ReachedPresenterInitialisation");
@@ -220,17 +213,12 @@ public class SubCategoryFragment extends Fragment implements SubCategoryView{
 //                subCategoryData.isSuccess(),subCategoryData.getSub_category_list());
 
         List<SubCategoryDetails> subCategoryDetailses = new ArrayList<>(subCategoryData.getSub_category_list());
-        Log.d("sub",subCategoryData.isSuccess()+"");
         if (subCategoryData.isSuccess()) {
             if (subCategoryDetailses.size() == 0
                     ) {
                 layout_not_available.setVisibility(View.VISIBLE);
-                Log.d("sub","9");
                 tabLayout.setVisibility(View.GONE);
-                Log.d("sub","10");
                 viewPager.setVisibility(View.GONE);
-                Log.d("sub","11");
-
 
             } else {
                 Log.d("sub","12");
@@ -243,24 +231,17 @@ public class SubCategoryFragment extends Fragment implements SubCategoryView{
 
         List<SubCategoryDetails> subCategoryDetailsList = new ArrayList<>(subCategoryData.getSub_category_list());
         List<Fragment> fragmentList = new ArrayList<>();
-        List<String> titleList = new ArrayList<>();
-        Log.d("sub","13");
+
 
         for (int i = 0; i < subCategoryDetailsList.size(); i++)
         {
-            ProductsListFragment fragment = ProductsListFragment.newInstance(subCategoryDetailsList.get(i).getId(),
-                                            querry);
-
-            fragmentList.add(fragment);
-            Log.d("sub","16");
-
+//            ProductsListFragment fragment = ProductsListFragment.newInstance(subCategoryDetailsList.get(i).getId(),
+//                                            querry);
+//            fragmentList.add(fragment);
             titleList.add(subCategoryDetailsList.get(i).getName());
         }
-        Log.d("sub","15");
-        viewPagerAdapter.setTabData(fragmentList, titleList);
-        Log.d("sub","17");
+        viewPagerAdapter.setTabData(querry,titleList);
         viewPagerAdapter.notifyDataSetChanged();
-        Log.d("sub","18");
 
     }
 
@@ -292,10 +273,8 @@ public class SubCategoryFragment extends Fragment implements SubCategoryView{
             public boolean onQueryTextChange(String s) {
 
                 querry=s;
-
-//                viewPagerAdapter.notifyDataSetChanged();
-
-
+                viewPagerAdapter.setTabData(querry,titleList);
+                viewPagerAdapter.notifyDataSetChanged();
                 return false;
             }
 

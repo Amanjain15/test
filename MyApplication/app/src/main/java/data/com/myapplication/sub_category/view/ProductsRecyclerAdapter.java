@@ -57,9 +57,9 @@ ProductsRecyclerAdapter(Context context,  ProductsListFragment productsListFragm
         productListDetails = productListDetailsList.get(position);
         final ProductViewHolder productViewHolder = (ProductViewHolder) holder;
         productViewHolder.name.setText(productListDetails.getName());
-        productViewHolder.email.setText(productListDetails.getEmail());
-        productViewHolder.place.setText(productListDetails.getPlace());
-        productViewHolder.unit.setText(productListDetails.getUnit());
+        productViewHolder.email.setText(productListDetails.getCollege());
+        productViewHolder.place.setText(productListDetails.getSpeciality());
+        productViewHolder.unit.setText(productListDetails.getId());
         productViewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

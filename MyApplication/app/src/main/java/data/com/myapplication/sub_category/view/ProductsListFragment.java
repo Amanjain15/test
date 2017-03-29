@@ -1,21 +1,15 @@
 package data.com.myapplication.sub_category.view;
 
-import android.app.ProgressDialog;
-import android.app.SearchManager;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -26,7 +20,6 @@ import java.util.List;
 
 import data.com.myapplication.R;
 import data.com.myapplication.SharedPrefs;
-import data.com.myapplication.sub_category.model.MockProductListProvider;
 import data.com.myapplication.sub_category.model.RetrofitProductListDetailsProvider;
 import data.com.myapplication.sub_category.model.data.ProductListDetails;
 import data.com.myapplication.sub_category.presenter.ProductListPresenterImplementation;
@@ -114,8 +107,8 @@ public class ProductsListFragment extends Fragment implements ProductListView{
     }
 
     private void initialize() {
-//        productsListPresenter = new ProductListPresenterImplementation(this, new RetrofitProductListDetailsProvider());
-        productsListPresenter = new ProductListPresenterImplementation(this, new MockProductListProvider());
+        productsListPresenter = new ProductListPresenterImplementation(this, new RetrofitProductListDetailsProvider());
+//        productsListPresenter = new ProductListPresenterImplementation(this, new MockProductListProvider());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         //recyclerView.setHasFixedSize(true);

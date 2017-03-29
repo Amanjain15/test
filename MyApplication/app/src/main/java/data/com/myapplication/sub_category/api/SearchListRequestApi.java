@@ -11,8 +11,8 @@ import retrofit2.http.Query;
 
 public interface SearchListRequestApi {
 
-    @GET("192.168.1.1:5555")
+    @GET("search")
     Call<ProductListData> getProductListData(@Query("query") String query, @Query("access_token") String access_token
-            , @Query("sub_category_id") int subCategoryId);
+            , @Query("type") int subCategoryId);
 
 }

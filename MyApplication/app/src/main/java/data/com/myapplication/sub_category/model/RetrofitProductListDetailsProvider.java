@@ -25,7 +25,7 @@ public class RetrofitProductListDetailsProvider implements ProductListDetailsPro
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("192")
+                .baseUrl("http://192.168.43.119:8000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

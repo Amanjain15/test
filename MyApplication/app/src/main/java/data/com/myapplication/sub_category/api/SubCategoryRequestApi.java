@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 
 public interface SubCategoryRequestApi {
 
-    @GET("192.168.1.1:8888")
+    @GET("get_tabs")
     Call<SubCategoryData> getSubCategoryData(@Query("access_token") String access_token
             );
 
