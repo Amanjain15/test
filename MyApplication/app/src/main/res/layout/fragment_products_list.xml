@@ -1,0 +1,82 @@
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:layout_weight="95"
+tools:context="data.com.myapplication.sub_category.view.ProductsListFragment">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    >
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/productRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="250dp" />
+    <LinearLayout
+
+        android:background="#FFFFFF"
+        android:layout_below="@+id/appBarLayout"
+        android:id="@+id/layout_not_available"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:visibility="gone"
+        >
+
+        <ImageView
+            android:id="@+id/image_not_available"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@drawable/empty_cart"
+
+            />
+
+        <TextView
+            android:id="@+id/text_not_available"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="No Products Available!"
+            android:textColor="@color/colorAccent"
+            android:textSize="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="We will be adding products soon."
+            android:textColor="@color/colorPrimary"
+            android:textSize="5dp" />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+
